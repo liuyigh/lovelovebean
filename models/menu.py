@@ -37,6 +37,7 @@ def _():
     app = request.application
     ctr = request.controller
     # useful links to internal and external resources
+'''
     response.menu += [
         (SPAN('web2py', _class='highlighted'), False, 'http://web2py.com', [
         (T('My Sites'), False, URL('admin', 'default', 'site')),
@@ -134,6 +135,8 @@ def _():
                         ])
                 ]
          )]
+'''
+
 if DEVELOPMENT_MENU: _()
 
 if "auth" in locals(): auth.wikimenu() 
