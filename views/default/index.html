@@ -1,0 +1,17 @@
+{{('message' in globals())}}
+{{extend 'layout.html'}}
+
+{{if 'message' in globals():}}
+<h3>{{=message}}</h3>
+
+<h4>{{=T('What will you see here?')}}</h4>
+<ol>
+  <li>{{=T('We will check daily markdown deals for you. Every Day!')}}</li>
+  <li>{{=T('We will match it to your cuszomized criteria.')}}</li>
+  <li>{{=T('We will then deliver the sale item you desire to you by email.')}}</li>
+</ol>
+{{elif 'content' in globals():}}
+{{=content}}
+{{else:}}
+{{=BEAUTIFY(response._vars)}}
+{{pass}}
