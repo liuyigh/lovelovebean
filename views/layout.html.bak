@@ -96,9 +96,9 @@
         <div class="span12">
             <div class="page-header">
                 <h1>
-                    <img src="{{=URL('static', 'images/love-love-bean-logo.png')}}" alt="Love Love Bean" width=640 style="margin-left: auto; margin-right:auto;" />
+                    {{=response.title}}
+                    <small>{{=response.subtitle or ''}}</small>
                 </h1>
-                <small>{{=response.subtitle or ''}}</small>
             </div>
         </div>
 	{{pass}}
@@ -133,9 +133,6 @@
     <!-- Footer ================================================== -->
     <div class="row">
         <footer class="footer span12" id="footer">
-            <div id="disclaimer">
-                <i>Disclaimer: LoveLoveBean.com is NOT associated with L.L.Bean Inc.. It is a fans-genarated site, with the main motivation to serve L.L.Bean fans and customers, and to improve our shopping experience.  L.L.Bean® and L.L.Bean logo are registered trademarks of L.L.Bean Inc.</i>
-            </div>
             <div class="footer-content">
                 {{block footer}} <!-- this is default footer -->
                 <div class="copyright pull-left">{{=T('Copyright')}} &#169; {{=request.now.year}}</div>
