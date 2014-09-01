@@ -11,8 +11,8 @@ response.title = request.application.replace('_',' ').title()
 response.subtitle = XML('L.L. Bean Daily Markdown Sales <br/> We Tailor to Fit You <br/> Deliver to You with Love')
 
 ## read more at http://dev.w3.org/html5/markup/meta.name.html
-response.meta.author = 'Your Name <you@example.com>'
-response.meta.keywords = 'web2py, python, framework'
+response.meta.author = 'LoveLoveBean <vievie@gamil.com>'
+response.meta.keywords = 'L.L.Bean, Daily Markdown, Alert'
 response.meta.generator = 'Web2py Web Framework'
 
 ## your http://google.com/analytics id
