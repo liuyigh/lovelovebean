@@ -5,7 +5,7 @@
 ## Customize your APP title, subtitle and menus here
 #########################################################################
 
-response.logo = A(B('L',SPAN('ove'),'L', SPAN('ove'),'Bean'),
+response.logo = A(B('L',SPAN('ove'),'L', SPAN('ove'),'Bean', XML('<sup> beta</sup>')),
                   _class="brand",_href="http://lovelovebean.com/")
 response.title = request.application.replace('_',' ').title()
 response.subtitle = XML('L.L. Bean Daily Markdown Sales <br/> We Tailor to Fit You <br/> Deliver to You with Love')

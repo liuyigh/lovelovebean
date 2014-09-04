@@ -223,3 +223,17 @@ CREATE TABLE saleItems(
     percSave DOUBLE
 );
 success!
+timestamp: 2014-09-01T17:18:21.309443
+CREATE TABLE criteria(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    keywords CHAR(512)
+);
+success!
+timestamp: 2014-09-01T17:19:58.227959
+CREATE TABLE auth_criteria(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    user_id INTEGER REFERENCES auth_user (id) ON DELETE CASCADE,
+    keywords CHAR(512)
+);
+success!

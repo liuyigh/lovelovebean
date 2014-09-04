@@ -262,3 +262,18 @@ div.controls .error {
         margin-left: -20px;
     }
 }
+
+/*=============================================================
+                       MY EDITS
+==============================================================*/
+
+body {
+  width: 980px;
+  margin: auto;
+  background-image: url('../images/bg/argyle.jpg');
+  color: #073642;
+}
+#header{margin-top:20px;}
+#wrapper {
+  background-color: #fdf6e3
+}

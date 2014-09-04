@@ -66,6 +66,7 @@
 </head>
 
 <body>
+  <div id='wrapper'>
   <!-- Navbar ================================================== -->
   <div class="navbar navbar-inverse">
     <div class="flash">{{=response.flash or ''}}</div>
@@ -95,9 +96,9 @@
       {{if response.title:}}
         <div class="span12">
             <div class="page-header">
-                <h1>
-                    <img src="{{=URL('static', 'images/love-love-bean-logo.png')}}" alt="Love Love Bean" width=640 style="margin-left: auto; margin-right:auto;" />
-                </h1>
+                <div style="float:left; margin-bottom:15px;">
+                    <img src="{{=URL('static', 'images/love-love-bean-logo.png')}}" alt="Love Love Bean" width=340 style="margin-left: auto; margin-right:60px;" />
+                </div>
                 <small>{{=response.subtitle or ''}}</small>
             </div>
         </div>
@@ -114,7 +115,7 @@
         </div>
         {{pass}}
 
-        <div class="{{=middle_columns}}">
+        <div class="{{=middle_columns}}" >
             {{block center}}
             {{include}}
             {{end}}
@@ -167,6 +168,7 @@
   });</script>
   {{pass}}
   <script src="{{=URL('static','js/share.js',vars=dict(static=URL('static','images')))}}"></script>
+</div>
 </body>
 </html>
 

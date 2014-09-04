@@ -44,6 +44,8 @@ from gluon.tools import Auth, Crud, Service, PluginManager, prettydate
 auth = Auth(db)
 crud, service, plugins = Crud(db), Service(), PluginManager()
 
+auth.messages.label_first_name = 'Nickname' ### My settings
+
 ## create all tables needed by auth if not custom tables
 auth.define_tables(username=False, signature=False)
 
@@ -79,6 +81,15 @@ use_janrain(auth, filename='private/janrain.key')
 ## >>> rows=db(db.mytable.myfield=='value').select(db.mytable.ALL)
 ## >>> for row in rows: print row.id, row.myfield
 #########################################################################
+db.auth_user.last_name.readable = False
+db.auth_user.last_name.writable = False
+db.auth_user.first_name.comment = 'such as Lovely Bean. '
+db.auth_user.email.comment = 'This is your ID. Required'
+
+db.define_table('auth_criteria',
+   Field('user_id', 'reference auth_user', readable=False, writable=False),
+   Field('keywords'))
+db.auth_criteria.user_id.requires = IS_IN_DB(db, db.auth_user.id)
 
 ## after defining tables, uncomment below to enable auditing
 # auth.enable_record_versioning(db)

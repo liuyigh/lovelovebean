@@ -2,15 +2,15 @@
 {{extend 'layout.html'}}
 
 {{if 'message' in globals():}}
-<div align="center"><img src="{{=URL('static', 'images/DTM-082914-canvas.png')}}" alt="Sample Daily Markdown" width=640 style="margin-left: auto; margin-right:auto;" /></div>
+<div style="float:left;"><img src="{{=URL('static', 'images/DTM-082914-canvas.png')}}" alt="Sample Daily Markdown" width=480 style="margin-left: auto; margin-right:30px;" /></div>
+<div>
 <h3>{{=message}}</h3>
-
 <h4>{{=T('What will you see here?')}}</h4>
 <ol>
   <li>{{=T('We will check daily markdown deals for you. Every Day!')}}</li>
   <li>{{=T('We will match it to your cuszomized criteria.')}}</li>
   <li>{{=T('We will then deliver the sale item you desire to you by email.')}}</li>
-</ol>
+</ol></div>
 {{elif 'content' in globals():}}
 {{=content}}
 {{else:}}
