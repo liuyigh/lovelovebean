@@ -16,7 +16,7 @@ response.meta.keywords = 'L.L.Bean, Daily Markdown, Alert'
 response.meta.generator = 'Web2py Web Framework'
 
 ## your http://google.com/analytics id
-response.google_analytics_id = None
+response.google_analytics_id = 'UA-6923981-3'
 
 #########################################################################
 ## this is the main application menu add/remove items as required

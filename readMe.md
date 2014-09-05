@@ -26,10 +26,20 @@
 	record item DB
 	user profile DB
 	match and record DB
+        keyword: individual word matching
+        numbers: specific range (and use numbers to represent) instead of customizing 
 	send email
+        use Mandrill
+        use auth verification
 	
 	User priority membership DB field (0,1,2)
 	
 	Scheduler
 	
 	Homepage
+
+    Deliver all deals
+
+    Big Data
+
+    analytics

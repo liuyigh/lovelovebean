@@ -2,7 +2,7 @@
 {{extend 'layout.html'}}
 
 {{if 'message' in globals():}}
-<div style="float:left;"><img src="{{=URL('static', 'images/DTM-082914-canvas.png')}}" alt="Sample Daily Markdown" width=480 style="margin-left: auto; margin-right:30px;" /></div>
+<div class="pull-left"><img src="{{=URL('static', 'images/DTM-082914-canvas.png')}}" alt="Sample Daily Markdown" width=480 style="margin-left: auto; margin-right:30px;" /></div>
 <div>
 <h3>{{=message}}</h3>
 <h4>{{=T('What will you see here?')}}</h4>

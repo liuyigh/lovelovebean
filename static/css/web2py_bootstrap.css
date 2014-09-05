@@ -277,3 +277,6 @@ body {
 #wrapper {
   background-color: #fdf6e3
 }
+.footer-content {
+    bottom: -2em;
+}

@@ -80,7 +80,7 @@
           <span class="icon-bar"></span>
         </button>
         {{=response.logo or ''}}
-        <ul id="navbar" class="nav pull-right">{{='auth' in globals() and auth.navbar(mode="dropdown") or ''}}</ul>
+        <ul id="navbar" class="nav pull-right">{{='auth' in globals() and auth.navbar(mode="dropdown", referrer_actions=None) or ''}}</ul>
         <div class="{{='nav-collapse' if is_mobile else 'nav'}}">
           {{if response.menu:}}
           {{=MENU(response.menu, _class='mobile-menu nav' if is_mobile else 'nav',mobile=is_mobile,li_class='dropdown',ul_class='dropdown-menu')}}
@@ -96,7 +96,7 @@
       {{if response.title:}}
         <div class="span12">
             <div class="page-header">
-                <div style="float:left; margin-bottom:15px;">
+                <div class='pull-left'>
                     <img src="{{=URL('static', 'images/love-love-bean-logo.png')}}" alt="Love Love Bean" width=340 style="margin-left: auto; margin-right:60px;" />
                 </div>
                 <small>{{=response.subtitle or ''}}</small>
@@ -141,8 +141,7 @@
                 {{block footer}} <!-- this is default footer -->
                 <div class="copyright pull-left">{{=T('Copyright')}} &#169; {{=request.now.year}}</div>
                 <div id="poweredBy" class="pull-right">
-                    {{=T('Powered by')}}
-                    <a href="http://www.web2py.com/">web2py</a>
+                    <a href="http://www.web2py.com/"><img src="http://www.web2py.com/init/static/images/Stickers5.png" alt='Powered by Web2Py'</img></a>
                 </div>
                 {{end}}
             </div>
