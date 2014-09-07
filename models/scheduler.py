@@ -51,8 +51,12 @@ def fetchBean():
         info['absSave'] = float(info['absSave'][0].strip(u'Save\xa0$'))
         info['percSave'] = float(info['percSave'][0].strip('% Off'))
         info['itemDetails'] = json.dumps(info['itemDetails'][:-1])
-        info['aveRev'] = float(info['aveRev'][0][8:-15])
-        info['revNum'] = int(info['revNum'][0])
+        if info['aveRev']:
+            info['aveRev'] = float(info['aveRev'][0][8:-15])
+            info['revNum'] = int(info['revNum'][0])
+        else:
+            info['aveRev'] = None
+            info['revNum'] = 0
         info['oriPrice'] = float(info['oriPrice'][0])
         info['salePrice'] = float(info['salePrice'][0])
 

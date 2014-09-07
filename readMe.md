@@ -38,6 +38,9 @@
 	
 	Homepage
 
+    Overwrite problem:
+        pack custom: exclude .git .DS_STORE database
+
     Deliver all deals
 
     Big Data
