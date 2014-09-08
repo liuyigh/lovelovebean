@@ -99,8 +99,9 @@ salePrice = {
 db.define_table('auth_criteria',
    Field('user_id', 'reference auth_user', readable=False, writable=False),
    Field('salePrice', 'integer',requires = IS_IN_SET(salePrice,zero=T('Price of Beans You Love?'))),
-   Field('toSend','integer'))
+   Field('toSend','integer', readable=False, writable=False))
 db.auth_criteria.user_id.requires = IS_IN_DB(db, db.auth_user.id)
+db.auth_criteria.id.readable=False 
 
 ## after defining tables, uncomment below to enable auditing
 # auth.enable_record_versioning(db)

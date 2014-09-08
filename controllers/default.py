@@ -39,7 +39,13 @@ def user():
     to decorate functions that need access control
     """
     if request.args(0)=='profile':
-        formFil=SQLFORM(db.auth_criteria)
+        db.auth_criteria.user_id.default = auth.user.id
+        record = db.auth_criteria(db.auth_criteria.user_id.default)
+        formFil=SQLFORM(db.auth_criteria, 
+            record=record,
+            labels = {'salePrice':XML('By Sale Price')})
+        if formFil.process().accepted:
+            response.flash = 'Your preference is recorded. Get ready for lovely beans.'
         return dict(form=auth(), formFil=formFil)
     else:
         return dict(form=auth())

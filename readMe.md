@@ -21,10 +21,10 @@
 # Functions:
 	
 ## First Priorities:
-* Scheduler DB: monitor worker and failure
-* record saleItem DB
-* **User filter DB: salePrice**
-* match and mark to send: toSend
+* __Scheduler DB: monitor worker and failure__
+* __record saleItem DB__
+* __User filter DB: salePrice__
+* **match and mark to send: toSend: {0:no; 1:yes}**
 * send email
     - use mandrill: SMTP and API
     - use auth verification
