@@ -89,9 +89,17 @@ db.auth_user.last_name.writable = False
 db.auth_user.first_name.comment = 'such as Lovely Bean. '
 db.auth_user.email.comment = 'This is your ID. Required'
 
+salePrice = {
+    0: 'All Deals | 2 lovely beans per day',
+    1: '<=$24.99',
+    2: '<=$49.99',
+    3: '<=$99.99'
+}
+
 db.define_table('auth_criteria',
    Field('user_id', 'reference auth_user', readable=False, writable=False),
-   Field('keywords'))
+   Field('salePrice', 'integer',requires = IS_IN_SET(salePrice,zero=T('Price of Beans You Love?'))),
+   Field('toSend','integer'))
 db.auth_criteria.user_id.requires = IS_IN_DB(db, db.auth_user.id)
 
 ## after defining tables, uncomment below to enable auditing
