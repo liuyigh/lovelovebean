@@ -48,6 +48,13 @@
     - register email
 * Fail proof for all steps: notify me when error.
 * Big Data: present deal distributions
+* UI: 
+    - logo; LoveLoveBean
+    - Web Design CSS
+* Marketing:
+    - Twitter
+* UserVoice (1000 Registered Users):
+    - Feature voting
 
 ## Third Priorities:
 * User priority membership DB field (0,1,2)
@@ -60,10 +67,3 @@
 # Solved problems:
 * APP Overwrite problem:
     pack custom: exclude .git .DS_STORE database
-
-
-
-
-analytics
-
-UI / Marketing / UserVoice
