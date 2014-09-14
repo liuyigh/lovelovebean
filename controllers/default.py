@@ -43,9 +43,10 @@ def user():
         record = db.auth_criteria(db.auth_criteria.user_id.default)
         formFil=SQLFORM(db.auth_criteria, 
             record=record,
-            labels = {'salePrice':XML('By Sale Price')})
+            labels = {'salePrice':XML('By Sale Price')},
+            buttons = [TAG.button('Set Mine', _class='btn-primary')])
         if formFil.process().accepted:
-            response.flash = 'Your preference is recorded. Get ready for lovely beans.'
+            response.flash = XML('Your preference is recorded. <br>Get ready for lovely beans.')
         return dict(form=auth(), formFil=formFil)
     else:
         return dict(form=auth())

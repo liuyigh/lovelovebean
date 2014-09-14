@@ -50,18 +50,32 @@ auth.messages.label_first_name = 'Nickname' ### My settings
 auth.define_tables(username=False, signature=False)
 
 ## configure email
-mail = auth.settings.mailer
+from gluon.tools import Mail
+from functools import partial
+import json
+mail = Mail()
 mail.settings.server = 'smtp.mandrillapp.com:587'
 mail.settings.sender = 'we@lovelovebean.com'
 mail.settings.login = 'vievie@gmail.com:0HLwKIwvpC_In6QveAuviw'
+'''
+emailheaders = {}
+if request.args(0)=='register':
+    verifylink = request.env.http_host + URL(r=request,c='default',f='user',args=['verify_email']) + '/%(key)s'
+    emailheaders = {'X-MC-Template':'llb-reg', 'X-MC-MergeVars': json.dumps({"verifylink": verifylink})}
+## reset password emails
+elif request.args(0)=='request_reset_password' and #require verification:
+    emailheaders = {}
+mail.send = partial(mail.send, headers=emailheaders)
+'''
 
 ## configure auth policy
+auth.settings.mailer = mail
 auth.settings.registration_requires_verification = True
 auth.settings.registration_requires_approval = False
 auth.settings.reset_password_requires_verification = True
 auth.messages.verify_email = 'Click on the link http://' +     request.env.http_host +     URL(r=request,c='default',f='user',args=['verify_email']) +     '/%(key)s to verify your email'
 auth.messages.reset_password = 'Click on the link http://' +     request.env.http_host +     URL(r=request,c='default',f='user',args=['reset_password']) +     '/%(key)s to reset your password'
-
+auth.settings.login_next = URL('user',args='profile')
 
 ## if you need to use OpenID, Facebook, MySpace, Twitter, Linkedin, etc.
 ## register with janrain.com, write your domain:api_key in private/janrain.key
@@ -86,19 +100,22 @@ use_janrain(auth, filename='private/janrain.key')
 #########################################################################
 db.auth_user.last_name.readable = False
 db.auth_user.last_name.writable = False
-db.auth_user.first_name.comment = 'such as Lovely Bean. '
-db.auth_user.email.comment = 'This is your ID. Required'
+db.auth_user.first_name.comment = 'such as Bean Lover.'
+db.auth_user.email.comment = 'This is your ID. Required.'
+
+priceScale = {1:24.99,2:49.99,3:99.99}
 
 salePrice = {
     0: 'All Deals | 2 lovely beans per day',
-    1: '<=$24.99',
-    2: '<=$49.99',
-    3: '<=$99.99'
+    1: 'below (<=) ${}'.format(priceScale[1]),
+    2: 'below (<=) ${}'.format(priceScale[2]),
+    3: 'below (<=) ${}'.format(priceScale[3]),
+    -1: 'Nope. No bean for now :)'
 }
 
 db.define_table('auth_criteria',
    Field('user_id', 'reference auth_user', readable=False, writable=False),
-   Field('salePrice', 'integer',requires = IS_IN_SET(salePrice,zero=T('Price of Beans You Love?'))),
+   Field('salePrice', 'integer', widget=SQLFORM.widgets.radio.widget, requires = IS_IN_SET(salePrice)),
    Field('toSend','integer', readable=False, writable=False))
 db.auth_criteria.user_id.requires = IS_IN_DB(db, db.auth_user.id)
 db.auth_criteria.id.readable=False 

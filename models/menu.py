@@ -8,7 +8,7 @@
 response.logo = A(B('L',SPAN('ove'),'L', SPAN('ove'),'Bean', XML('<sup> beta</sup>')),
                   _class="brand",_href="http://lovelovebean.com/")
 response.title = request.application.replace('_',' ').title()
-response.subtitle = XML('L.L. Bean Daily Markdown Sales <br/> We Tailor to Fit You <br/> Deliver to You with Love')
+response.subtitle = XML('L.L.Bean Daily Sales <br/> We Tailor to Fit You <br/> Deliver to You with Love')
 
 ## read more at http://dev.w3.org/html5/markup/meta.name.html
 response.meta.author = 'LoveLoveBean <vievie@gamil.com>'

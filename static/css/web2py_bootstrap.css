@@ -271,12 +271,21 @@ body {
   width: 980px;
   margin: auto;
   background-image: url('../images/bg/argyle.jpg');
-  color: #073642;
 }
 #header{margin-top:20px;}
-#wrapper {
-  background-color: #fdf6e3
-}
 .footer-content {
     bottom: -2em;
+}
+
+#logo {
+border-radius: 4px;
+border-style: solid;
+border-width: 8px;
+border-color:#586e75;
+margin: 0 60px 20px 120px;
+padding: 5px;
+} 
+
+.page-header {
+  height: 160px;
 }

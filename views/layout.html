@@ -45,6 +45,7 @@
   response.files.insert(1,URL('static','css/bootstrap.min.css'))
   response.files.insert(2,URL('static','css/bootstrap-responsive.min.css'))
   response.files.insert(3,URL('static','css/web2py_bootstrap.css'))
+  response.files.insert(4,URL('static','css/my-solarized.css'))
   }}
 
   {{include 'web2py_ajax.html'}}
@@ -96,10 +97,10 @@
       {{if response.title:}}
         <div class="span12">
             <div class="page-header">
-                <div class='pull-left'>
-                    <img src="{{=URL('static', 'images/love-love-bean-logo.png')}}" alt="Love Love Bean" width=340 style="margin-left: auto; margin-right:60px;" />
+                <div class='pull-left' id='logo'>
+                    <img src="{{=URL('static', 'images/love-love-bean-logo.png')}}" alt="Love Love Bean" width=120 />
                 </div>
-                <small>{{=response.subtitle or ''}}</small>
+                <small id='tagline'>{{=response.subtitle or ''}}</small>
             </div>
         </div>
 	{{pass}}

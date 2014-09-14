@@ -17,9 +17,35 @@ db.define_table('saleItems',
         Field('percSave','double'),
         )
 
+def matchPrice(priceToMatch):
+    if priceToMatch <= priceScale[1]:
+        priceMatched = 1
+    elif priceToMatch <= priceScale[2]:
+        priceMatched = 2
+    elif priceMatched <= priceScale[3]:
+        priceMatched = 3
+    db(db.auth_criteria.salePrice>=priceMatched).update(toSend=1)
+    db.commit()
+
+def sendBean():
+    import mandrill
+    mandrill_client = mandrill.Mandrill('0HLwKIwvpC_In6QveAuviw')
+    emailList = []
+    rowsToSend = db(db.auth_criteria.toSend==1).select()
+    for row in rowsToSend:
+        emailList = emailList.append(row.user_id.email)
+    message = json.dumps({'global_merge_vars':[{'name':'verifylink','content':'lovelovebean.com'}],
+               'to':[{'email':email} for email in emailList]
+              })
+    #template_content = []
+    result = mandrill_client.messages.send_template(template_name='llb-bean',template_content=[], message=message)
+    db(db.auth_criteria.toSend==1).update(toSend=0)
+    db.commit()
+    return None
+
 def fetchBean():
     import lxml.html as lh
-    import lxml, requests, json
+    import lxml, requests
     from StringIO import StringIO
 
     #fetch html
@@ -66,15 +92,10 @@ def fetchBean():
     db.saleItems.insert(**info)
     db.commit()
 
+    matchPrice(info['salePrice'])
+    sendBean()
+
 def matchBean():
     return None
 
-def sendBean():
-    return None
-
 scheduler = Scheduler(sche_db, dict(fetchBean=fetchBean))
-
-'''
-scheduler.queue_task('sendBean',
-    start_time = request.now + timed(minutes=15)) #15sec, 60min
-'''

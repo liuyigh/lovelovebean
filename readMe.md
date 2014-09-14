@@ -1,7 +1,7 @@
 # Filters:
 * All Deals (under price filter)
 * sale Price (class="toOrderItemSalePrice")
-    <= 24.99; <=49.99; <= 99.99
+    <= 24.99; <=49.99; <= 99.99; None(-1)
 * Title Keywords (id="ppHeader")
     - unicode (currently ignored)
 * Details Keywords (id="ppDetails")
@@ -14,24 +14,27 @@
 * percent save (class="toOrderItemSaleText" itemprop="description"")
 * saleID (timestamp)
 * prodID
-* pictures (link only?)
+* pictures (link only?) '//img[@name="ecm_main"]/@src'
 * Regular Tall Petite
 * Daily Travel Gear 510312
     
-# Functions:
 	
-## First Priorities:
-* __Scheduler DB: monitor worker and failure__
-* __record saleItem DB__
-* __User filter DB: salePrice__
-* **match and mark to send: toSend: {0:no; 1:yes}**
-* send email
-    - use mandrill: SMTP and API
-    - use auth verification
+# First Priorities:
+* _Scheduler DB: monitor worker and failure_
+* _record saleItem DB_
+* _User filter DB: salePrice_
+* _match and mark to send: `toSend`: {0:no; 1:yes}_
+* **send email**
+    - use mandrill: API
+        - deal notice template
+    - _reset `toSend` after sent_
+* brush up UI, launch beta
+* _run @reboot worker at screen_
 
 
-## Second Priorities:
+# Second Priorities:
 * Scrape
+
 ```
     if no_item: # id = ecmABT
         retry in 3 minutes
@@ -43,22 +46,32 @@
 * advanced user filter DB
     - Keywords: individual word matching
     - numbers: Predefined specific range (and use numbers to represent instead of user customizing)
-* enrich email template
-    - deal notice
-    - register email
 * Fail proof for all steps: notify me when error.
+* Automatic database backup
 * Big Data: present deal distributions
+* API deal mail
+    - username merge
+    - mergetags to use deal info; beautify
+    - iter every 100 recepients
 * UI: 
     - logo; LoveLoveBean
     - Web Design CSS
+    - homepage show current item
+    - SMTP mailer issue email template:   
+        - register email
+        - reset pwd email
+        - use auth() verification codes
 * Marketing:
     - Twitter
 * UserVoice (1000 Registered Users):
     - Feature voting
 
-## Third Priorities:
+# Third Priorities:
 * User priority membership DB field (0,1,2)
+    - paypal integration
 * match and record DB
+    - count sent beans
+    - reset count
 * advanced big data
 * advanced deal combinations if user desire
 * Google analystics
@@ -67,3 +80,6 @@
 # Solved problems:
 * APP Overwrite problem:
     pack custom: exclude .git .DS_STORE database
+* radio widget
+* dynamic mailer
+* split every: http://bit.ly/X2vFmx
