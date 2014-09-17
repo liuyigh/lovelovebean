@@ -103,7 +103,7 @@ db.auth_user.last_name.writable = False
 db.auth_user.first_name.comment = 'such as Bean Lover.'
 db.auth_user.email.comment = 'This is your ID. Required.'
 
-priceScale = {1:24.99,2:49.99,3:99.99}
+priceScale = {1:14.99,2:19.99,3:34.99}
 
 salePrice = {
     0: 'All Deals | 2 lovely beans per day',

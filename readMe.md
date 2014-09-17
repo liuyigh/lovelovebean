@@ -24,11 +24,15 @@
 * _record saleItem DB_
 * _User filter DB: salePrice_
 * _match and mark to send: `toSend`: {0:no; 1:yes}_
-* **send email**
+* _send email_
     - use mandrill: API
-        - deal notice template
-    - _reset `toSend` after sent_
+    - deal notice template
+    - mergetags to use deal info; beautify; 
+    - picture scrape   
+    - reset `toSend` after sent
 * brush up UI, launch beta
+    - optimal price scale
+    - _all deals_  
 * _run @reboot worker at screen_
 
 
@@ -51,7 +55,6 @@
 * Big Data: present deal distributions
 * API deal mail
     - username merge
-    - mergetags to use deal info; beautify
     - iter every 100 recepients
 * UI: 
     - logo; LoveLoveBean

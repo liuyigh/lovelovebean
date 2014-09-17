@@ -24,21 +24,23 @@ def matchPrice(priceToMatch):
         priceMatched = 2
     elif priceMatched <= priceScale[3]:
         priceMatched = 3
-    db(db.auth_criteria.salePrice>=priceMatched).update(toSend=1)
+    db((db.auth_criteria.salePrice>=priceMatched)|(db.auth_criteria.salePrice==0)).update(toSend=1)
     db.commit()
 
 def sendBean():
     import mandrill
     mandrill_client = mandrill.Mandrill('0HLwKIwvpC_In6QveAuviw')
     emailList = []
+    message = {}
     rowsToSend = db(db.auth_criteria.toSend==1).select()
     for row in rowsToSend:
-        emailList = emailList.append(row.user_id.email)
-    message = json.dumps({'global_merge_vars':[{'name':'verifylink','content':'lovelovebean.com'}],
+        emailList.append(row.user_id.email)
+    if emailList:
+        message = json.dumps({'global_merge_vars':[{'name':'verifylink','content':'lovelovebean.com'}],
                'to':[{'email':email} for email in emailList]
               })
-    #template_content = []
-    result = mandrill_client.messages.send_template(template_name='llb-bean',template_content=[], message=message)
+        #template_content = []
+        result = mandrill_client.messages.send_template(template_name='llb-bean',template_content=[], message=message)
     db(db.auth_criteria.toSend==1).update(toSend=0)
     db.commit()
     return None
