@@ -1,0 +1,7 @@
+#llb-bean template
+
+<img src="http:*|piclink|*" alt="load image to see picture."/>
+
+<h3>*|itemTitle|*</h3>
+<span style="font-size:14px">*|aveRev|*/5 Stars (*|revNum|* reviews)<br>
+    <span style="text-decoration:line-through">$*|oriPrice|*</span></span> <span style="color:#FF0000"><span style="font-size:16px">$*|salePrice|*</span> <br><span style="font-size:14px">Save $ *|absSave|* (*|percSave|* % off)</span></span><br>

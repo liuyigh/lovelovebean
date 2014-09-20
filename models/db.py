@@ -110,7 +110,7 @@ salePrice = {
     1: 'below (<=) ${}'.format(priceScale[1]),
     2: 'below (<=) ${}'.format(priceScale[2]),
     3: 'below (<=) ${}'.format(priceScale[3]),
-    -1: 'Nope. No bean for now :)'
+    -1: 'Nope. More filters please! :)'
 }
 
 db.define_table('auth_criteria',

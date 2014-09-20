@@ -24,15 +24,16 @@
 * _record saleItem DB_
 * _User filter DB: salePrice_
 * _match and mark to send: `toSend`: {0:no; 1:yes}_
-* _send email_
+* send email
     - use mandrill: API
     - deal notice template
     - mergetags to use deal info; beautify; 
-    - picture scrape   
-    - reset `toSend` after sent
+    - picture scrape
+    - _reset `toSend` after sent_
 * brush up UI, launch beta
-    - optimal price scale
-    - _all deals_  
+    - _optimal price scale_
+    - _all deal_
+    - blog: introducing LLB
 * _run @reboot worker at screen_
 
 
@@ -55,10 +56,11 @@
 * Big Data: present deal distributions
 * API deal mail
     - username merge
+    - *|itemDetails|*
     - iter every 100 recepients
 * UI: 
     - logo; LoveLoveBean
-    - Web Design CSS
+    - Web Design CSS: mobile
     - homepage show current item
     - SMTP mailer issue email template:   
         - register email
@@ -66,6 +68,7 @@
         - use auth() verification codes
 * Marketing:
     - Twitter
+    - Blog
 * UserVoice (1000 Registered Users):
     - Feature voting
 
@@ -86,3 +89,9 @@
 * radio widget
 * dynamic mailer
 * split every: http://bit.ly/X2vFmx
+
+# Notes:
+* m.llbean.com scrape:
+`http://m.llbean.com/webapp/wcs/stores/servlet/ShowEcmInstance?storeId=1&catalogId=1&langId=-1&nav=gn-hp&ecmCategoryId=504987&relType=AD`
+
+* Use web developer tracker "Network"

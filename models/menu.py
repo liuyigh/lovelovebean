@@ -23,7 +23,8 @@ response.google_analytics_id = 'UA-6923981-3'
 #########################################################################
 
 response.menu = [
-    (T('Home'), False, URL('default', 'index'), [])
+    (T('Home'), False, URL('default', 'index'), []),
+    (T('Blog'), False, 'http://lovelovebean.wordpress.com', [])
 ]
 
 DEVELOPMENT_MENU = True
