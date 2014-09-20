@@ -29,14 +29,14 @@ def matchPrice(priceToMatch):
     db((db.auth_criteria.salePrice>=priceMatched)|(db.auth_criteria.salePrice==0)).update(toSend=1)
     db.commit()
 
-def sendBean(info):
+def sendBean(info, piclink):
     import mandrill
     mandrill_client = mandrill.Mandrill('0HLwKIwvpC_In6QveAuviw')
     emailList = []
     rowsToSend = db(db.auth_criteria.toSend==1).select()
     for row in rowsToSend:
         emailList.append(row.user_id.email)
-    message = {'global_merge_vars':[{'name':k,'content':v} for k,v in info.iteritems()],
+    message = {'global_merge_vars':[{'name':k,'content':v} for (k,v) in info.iteritems()]+[{'name':'piclink','content':piclink}], 
                'to':[{'email':email} for email in emailList]
               }
     #template_content = []
@@ -88,8 +88,8 @@ def fetchBean():
         info['oriPrice'] = float(info['oriPrice'][0])
         info['salePrice'] = float(info['salePrice'][0])
 
-        info['piclink'] = html.xpath('//img[@name="ecm_main"]/@src')
-        info['piclink'] = info['piclink'][0][:-11]
+        piclink = html.xpath('//img[@name="ecm_main"]/@src')
+        piclink = piclink[0][:-11]
 
         info['saleID'] = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M')
 
@@ -97,7 +97,7 @@ def fetchBean():
     db.commit()
 
     matchPrice(info['salePrice'])
-    sendBean(info)
+    sendBean(info, piclink)
 
 def matchBean():
     return None
