@@ -13,7 +13,10 @@ if request.args(0)=='login':
 pass
 =form
 }}
-</div>
+</div><div style="color:#d33682">
+{{if request.args(0)=='register':
+=T('A verification email will be sent to you. Please click the link in the email to verify your email address.')
+pass}}</div>
 <div id="user_filter">
 {{if request.args(0)=='profile':
 =H2('Your Filter')

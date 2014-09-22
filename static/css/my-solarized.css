@@ -44,3 +44,12 @@ div.flash {
     font-size: 32px;
     line-height: 1.5em;
 }
+
+.btn-signup {
+    height:50px;
+    line-height:40px;
+    width:200px;
+    text-align:center;
+    font-size:30px;
+    font-weight:bold;
+}

@@ -20,7 +20,7 @@ def index():
     """
     response.flash = T("Welcome to LoveLoveBean!")
     response.title = 'LoveLoveBean'
-    return dict(message=T('This site is coming soon. Stay tuned!'))
+    return dict(message=T('LoveLoveBean App beta is now open!'))
 
 
 def user():

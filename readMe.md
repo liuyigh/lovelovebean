@@ -33,7 +33,6 @@
 * brush up UI, launch beta
     - _optimal price scale_
     - _all deal_
-    - blog: introducing LLB
 * _run @reboot worker at screen_
 
 
@@ -60,6 +59,7 @@
     - iter every 100 recepients
 * UI: 
     - logo; LoveLoveBean
+    - blog: introducing LLB
     - Web Design CSS: mobile
     - homepage show current item
     - SMTP mailer issue email template:   
