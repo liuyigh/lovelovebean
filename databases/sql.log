@@ -1141,3 +1141,102 @@ success!
 success!
 success!
 success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+timestamp: 2014-10-03T10:44:09.090494
+CREATE TABLE tgItems(
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    saleID CHAR(512) UNIQUE,
+    itemTitle CHAR(512),
+    itemDetails TEXT,
+    prodID CHAR(512),
+    revNum INTEGER,
+    aveRev DOUBLE,
+    oriPrice DOUBLE,
+    salePrice DOUBLE,
+    absSave DOUBLE,
+    percSave DOUBLE
+);
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!
+success!

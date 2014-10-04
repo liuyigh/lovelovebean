@@ -23,8 +23,11 @@ response.google_analytics_id = 'UA-6923981-3'
 #########################################################################
 
 response.menu = [
-    (T('Home'), False, URL('default', 'index'), []),
-    (T('Blog'), False, 'http://lovelovebean.wordpress.com', [])
+    (T('App'), False, URL('default', 'index'), []),
+    (T('Blog'), False, 'http://blog.lovelovebean.com', []),
+    (T('Save $'), False, 'http://blog.lovelovebean.com/2014/10/04/10-ways-to-save-money-on-l-l-bean-products/', []),
+    (T('About'), False, 'http://blog.lovelovebean.com/about/', []),
+    (T('Contact Us'), False, 'http://blog.lovelovebean.com/contact-us/', [])
 ]
 
 DEVELOPMENT_MENU = True

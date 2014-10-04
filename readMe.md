@@ -24,19 +24,20 @@
 * _record saleItem DB_
 * _User filter DB: salePrice_
 * _match and mark to send: `toSend`: {0:no; 1:yes}_
-* send email
+* _send email_
     - use mandrill: API
     - deal notice template
     - mergetags to use deal info; beautify; 
     - picture scrape
-    - _reset `toSend` after sent_
-* brush up UI, launch beta
-    - _optimal price scale_
-    - _all deal_
+    - reset `toSend` after sent
+* _brush up UI, launch beta_
+    - optimal price scale
+    - all deal
 * _run @reboot worker at screen_
 
 
 # Second Priorities:
+* 510312
 * Scrape
 
 ```
@@ -51,6 +52,7 @@
     - Keywords: individual word matching
     - numbers: Predefined specific range (and use numbers to represent instead of user customizing)
 * Fail proof for all steps: notify me when error.
+* _Cron watchdog_
 * Automatic database backup
 * Big Data: present deal distributions
 * API deal mail
@@ -81,6 +83,7 @@
 * advanced big data
 * advanced deal combinations if user desire
 * Google analystics
+* monetize from the company
 
 
 # Solved problems:
