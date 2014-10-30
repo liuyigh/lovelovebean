@@ -52,7 +52,7 @@
     - Keywords: individual word matching
     - numbers: Predefined specific range (and use numbers to represent instead of user customizing)
 * _Fail proof for all steps: notify me when error._ 10/20/2014
-* _Cron watchdog_
+* _Cron watchdog_ watchdog with tmux 10.28.2014
 * _Automatic database backup_ 10.15.2014
 * Big Data: present deal distributions
 * API deal mail
