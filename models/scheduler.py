@@ -2,9 +2,10 @@ import datetime
 from gluon.scheduler import Scheduler
 from datetime import timedelta as timed
 import lxml.html as lh
-import lxml, requests
+import lxml, requests, mandrill, logging, sys, traceback
 
 sche_db = DAL('sqlite://sched.sqlite')
+mandrill_client = mandrill.Mandrill('0HLwKIwvpC_In6QveAuviw')
 
 db.define_table('saleItems', 
         Field('saleID', 'string',unique=True),
@@ -32,6 +33,20 @@ db.define_table('tgItems',
         Field('percSave','double'),
         )
 
+def notifyException():
+    exc_type, exc_value, exc_traceback = sys.exc_info()
+    lines = traceback.format_exception(exc_type, exc_value, exc_traceback)
+    pre = ''.join('!> ' + line for line in lines)
+    pre = pre.replace('>','&gt;')
+    pre = pre.replace('<','&lt;')
+    html = '<pre>'+pre+'</pre>'
+    message = {'subject':'LLB Scheduler Error',
+                'from_email':'we@lovelovebean.com',
+                'html':html,
+                'to':[{'email':'vievie@gmail.com'}]
+                }
+    result = mandrill_client.messages.send(message=message)
+
 def matchPrice(priceToMatch):
     if priceToMatch <= priceScale[1]:
         priceMatched = 1
@@ -45,8 +60,6 @@ def matchPrice(priceToMatch):
     db.commit()
 
 def sendBean(info, piclink):
-    import mandrill
-    mandrill_client = mandrill.Mandrill('0HLwKIwvpC_In6QveAuviw')
     emailList = []
     rowsToSend = db(db.auth_criteria.toSend==1).select()
     for row in rowsToSend:
@@ -68,48 +81,53 @@ def fetchBean():
            'Accept-Encoding': 'none',
            'Accept-Language': 'en-US,en;q=0.8',
            'Connection': 'keep-alive'}
-    r = requests.get('http://www.llbean.com/llb/shop/504987', stream=True, headers=hdr)
-    if r.status_code == 200:
-        # repeat if not 200
-        # repeat if no sales
-        html = lh.fromstring(r.text)
-        info = {} 
-        info['itemTitle'] = html.xpath('//div[@id="ppHeader"]/h1/text()')
-        info['itemDetails'] = html.xpath('//div[@id="ppDetails"]//text()')
-        info['prodID'] = html.xpath('//span[@itemprop="productID"]/text()')
-        info['revNum'] = html.xpath('//span[@class="reviewsNumber"]/text()')
-        info['aveRev'] = html.xpath('//span[@id="ATBProdStarReviews"]/img/@alt')
-        info['oriPrice'] = html.xpath('//h2[@class="toOrderItemPrice toOrderItemStrikeOutPrice"]/text()')
-        info['salePrice'] = html.xpath('//h2[@class="toOrderItemSalePrice"]/text()')
-        info['absSave'] = html.xpath('//p[@class="toOrderItemSaleText"][1]/text()')
-        info['percSave'] = html.xpath('//p[@class="toOrderItemSaleText" and @itemprop="description"]/text()')
-        
-        info = {k: [x.strip('$()\n\t\r ') for x in v] for (k, v) in info.iteritems()}
-        info = {k: filter(None, v) for (k, v) in info.iteritems()}
+    try:
+        r = requests.get('http://www.llbean.com/llb/shop/504987', stream=True, headers=hdr)
+        if r.status_code == 200:
+            # repeat if not 200
+            # repeat if no sales
+            html = lh.fromstring(r.text)
+            info = {} 
+            info['itemTitle'] = html.xpath('//div[@id="ppHeader"]/h1/text()')
+            info['itemDetails'] = html.xpath('//div[@id="ppDetails"]//text()')
+            info['prodID'] = html.xpath('//span[@itemprop="productID"]/text()')
+            info['revNum'] = html.xpath('//span[@class="reviewsNumber"]/text()')
+            info['aveRev'] = html.xpath('//span[@id="ATBProdStarReviews"]/img/@alt')
+            info['oriPrice'] = html.xpath('//h2[@class="toOrderItemPrice toOrderItemStrikeOutPrice"]/text()')
+            info['salePrice'] = html.xpath('//h2[@class="toOrderItemSalePrice"]/text()')
+            info['absSave'] = html.xpath('//p[@class="toOrderItemSaleText"][1]/text()')
+            info['percSave'] = html.xpath('//p[@class="toOrderItemSaleText" and @itemprop="description"]/text()')
+            
+            info = {k: [x.strip('$()\n\t\r ') for x in v] for (k, v) in info.iteritems()}
+            info = {k: filter(None, v) for (k, v) in info.iteritems()}
 
-        info['absSave'] = float(info['absSave'][0].strip(u'Save\xa0$'))
-        info['percSave'] = float(info['percSave'][0].strip('% Off'))
-        info['itemTitle'] = info['itemTitle'][0].encode('ascii','ignore')
-        info['itemDetails'] = json.dumps(info['itemDetails'][:-1])
-        if info['aveRev']:
-            info['aveRev'] = float(info['aveRev'][0][8:-15])
-            info['revNum'] = int(info['revNum'][0])
-        else:
-            info['aveRev'] = None
-            info['revNum'] = 0
-        info['oriPrice'] = float(info['oriPrice'][0])
-        info['salePrice'] = float(info['salePrice'][0])
+            info['absSave'] = float(info['absSave'][0].strip(u'Save\xa0$'))
+            info['percSave'] = float(info['percSave'][0].strip('% Off'))
+            info['itemTitle'] = info['itemTitle'][0].encode('ascii','ignore')
+            info['itemDetails'] = json.dumps(info['itemDetails'][:-1])
+            if info['aveRev']:
+                info['aveRev'] = float(info['aveRev'][0][8:-15])
+                info['revNum'] = int(info['revNum'][0])
+            else:
+                info['aveRev'] = None
+                info['revNum'] = 0
+            info['oriPrice'] = float(info['oriPrice'][0])
+            info['salePrice'] = float(info['salePrice'][0])
 
-        piclink = html.xpath('//img[@name="ecm_main"]/@src')
-        piclink = piclink[0][:-11]
+            piclink = html.xpath('//img[@name="ecm_main"]/@src')
+            if piclink == []:
+                piclink = html.xpath('//img[@name="ecm_Front"]/@src')
+            piclink = piclink[0][:-11]
 
-        info['saleID'] = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M')
+            info['saleID'] = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M')
 
-    db.saleItems.insert(**info)
-    db.commit()
+        db.saleItems.insert(**info)
+        db.commit()
 
-    matchPrice(info['salePrice'])
-    sendBean(info, piclink)
+        matchPrice(info['salePrice'])
+        sendBean(info, piclink)
+    except:
+        notifyException()
 
 def fetchTGBean():
     #fetch travel and gear html
@@ -119,44 +137,47 @@ def fetchTGBean():
            'Accept-Encoding': 'none',
            'Accept-Language': 'en-US,en;q=0.8',
            'Connection': 'keep-alive'}
-    r = requests.get('http://www.llbean.com/llb/shop/510312', stream=True, headers=hdr)
-    if r.status_code == 200:
-        # repeat if not 200
-        # repeat if no sales
-        html = lh.fromstring(r.text)
-        info = {} 
-        info['itemTitle'] = html.xpath('//div[@id="ppHeader"]/h1/text()')
-        info['itemDetails'] = html.xpath('//div[@id="ppDetails"]//text()')
-        info['prodID'] = html.xpath('//span[@itemprop="productID"]/text()')
-        info['revNum'] = html.xpath('//span[@class="reviewsNumber"]/text()')
-        info['aveRev'] = html.xpath('//span[@id="ATBProdStarReviews"]/img/@alt')
-        info['oriPrice'] = html.xpath('//h2[@class="toOrderItemPrice toOrderItemStrikeOutPrice"]/text()')
-        info['salePrice'] = html.xpath('//h2[@class="toOrderItemSalePrice"]/text()')
-        info['absSave'] = html.xpath('//p[@class="toOrderItemSaleText"][1]/text()')
-        info['percSave'] = html.xpath('//p[@class="toOrderItemSaleText" and @itemprop="description"]/text()')
-        
-        info = {k: [x.strip('$()\n\t\r ') for x in v] for (k, v) in info.iteritems()}
-        info = {k: filter(None, v) for (k, v) in info.iteritems()}
+    try:
+        r = requests.get('http://www.llbean.com/llb/shop/510312', stream=True, headers=hdr)
+        if r.status_code == 200:
+            # repeat if not 200
+            # repeat if no sales
+            html = lh.fromstring(r.text)
+            info = {} 
+            info['itemTitle'] = html.xpath('//div[@id="ppHeader"]/h1/text()')
+            info['itemDetails'] = html.xpath('//div[@id="ppDetails"]//text()')
+            info['prodID'] = html.xpath('//span[@itemprop="productID"]/text()')
+            info['revNum'] = html.xpath('//span[@class="reviewsNumber"]/text()')
+            info['aveRev'] = html.xpath('//span[@id="ATBProdStarReviews"]/img/@alt')
+            info['oriPrice'] = html.xpath('//h2[@class="toOrderItemPrice toOrderItemStrikeOutPrice"]/text()')
+            info['salePrice'] = html.xpath('//h2[@class="toOrderItemSalePrice"]/text()')
+            info['absSave'] = html.xpath('//p[@class="toOrderItemSaleText"][1]/text()')
+            info['percSave'] = html.xpath('//p[@class="toOrderItemSaleText" and @itemprop="description"]/text()')
+            
+            info = {k: [x.strip('$()\n\t\r ') for x in v] for (k, v) in info.iteritems()}
+            info = {k: filter(None, v) for (k, v) in info.iteritems()}
 
-        info['absSave'] = float(info['absSave'][0].strip(u'Save\xa0$'))
-        info['percSave'] = float(info['percSave'][0].strip('% Off'))
-        info['itemTitle'] = info['itemTitle'][0].encode('ascii','ignore')
-        info['itemDetails'] = json.dumps(info['itemDetails'][:-1])
-        if info['aveRev']:
-            info['aveRev'] = float(info['aveRev'][0][8:-15])
-            info['revNum'] = int(info['revNum'][0])
-        else:
-            info['aveRev'] = None
-            info['revNum'] = 0
-        info['oriPrice'] = float(info['oriPrice'][0])
-        info['salePrice'] = float(info['salePrice'][0])
+            info['absSave'] = float(info['absSave'][0].strip(u'Save\xa0$'))
+            info['percSave'] = float(info['percSave'][0].strip('% Off'))
+            info['itemTitle'] = info['itemTitle'][0].encode('ascii','ignore')
+            info['itemDetails'] = json.dumps(info['itemDetails'][:-1])
+            if info['aveRev']:
+                info['aveRev'] = float(info['aveRev'][0][8:-15])
+                info['revNum'] = int(info['revNum'][0])
+            else:
+                info['aveRev'] = None
+                info['revNum'] = 0
+            info['oriPrice'] = float(info['oriPrice'][0])
+            info['salePrice'] = float(info['salePrice'][0])
 
-        piclink = html.xpath('//img[@name="ecm_main"]/@src')
-        piclink = piclink[0][:-11]
+            piclink = html.xpath('//img[@name="ecm_main"]/@src')
+            piclink = piclink[0][:-11]
 
-        info['saleID'] = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M')
+            info['saleID'] = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M')
 
-    db.tgItems.insert(**info)
-    db.commit()
+        db.tgItems.insert(**info)
+        db.commit()
+    except:
+        notifyException()
 
 scheduler = Scheduler(sche_db, dict(fetchBean=fetchBean, fetchTGBean=fetchTGBean))

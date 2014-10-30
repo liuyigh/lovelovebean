@@ -267,11 +267,18 @@ div.controls .error {
                        MY EDITS
 ==============================================================*/
 
-body {
-  width: 980px;
-  margin: auto;
-  background-image: url('../images/bg/argyle.jpg');
+@media(min-width: 768px) {
+  body {
+    width:980px;
+    margin: auto;
+    background-image: url('../images/bg/argyle.jpg');
+  }
+
+  .page-header {
+    height: 160px;
+  }
 }
+
 #header{margin-top:20px;}
 .footer-content {
     bottom: -2em;
@@ -286,6 +293,3 @@ margin: 0 60px 20px 120px;
 padding: 5px;
 } 
 
-.page-header {
-  height: 160px;
-}
