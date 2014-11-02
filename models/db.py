@@ -104,6 +104,7 @@ db.auth_user.first_name.comment = 'such as Bean Lover.'
 db.auth_user.email.comment = 'This is your ID. Required.'
 
 priceScale = {1:14.99,2:19.99,3:34.99}
+tgScale = {1:24.99,2:49.99,3:74.99}
 
 salePrice = {
     0: 'All Deals | 2 lovely beans per day',
@@ -113,9 +114,18 @@ salePrice = {
     -1: 'Nope. More filters please! :)'
 }
 
+tgPrice = {
+    0: 'All Deals | 1 lovely beans per day',
+    1: 'below (<=) ${}'.format(tgScale[1]),
+    2: 'below (<=) ${}'.format(tgScale[2]),
+    3: 'below (<=) ${}'.format(tgScale[3]),
+    -1: 'Nope. More filters please! :)'
+}
+
 db.define_table('auth_criteria',
    Field('user_id', 'reference auth_user', readable=False, writable=False),
    Field('salePrice', 'integer', widget=SQLFORM.widgets.radio.widget, requires = IS_IN_SET(salePrice)),
+   Field('tgPrice', 'integer', widget=SQLFORM.widgets.radio.widget, requires = IS_IN_SET(tgPrice)),
    Field('toSend','integer', readable=False, writable=False))
 db.auth_criteria.user_id.requires = IS_IN_DB(db, db.auth_user.id)
 db.auth_criteria.id.readable=False 

@@ -59,6 +59,18 @@ def matchPrice(priceToMatch):
     db((db.auth_criteria.salePrice>=priceMatched)|(db.auth_criteria.salePrice==0)).update(toSend=1)
     db.commit()
 
+def matchTGPrice(priceToMatch):
+    if priceToMatch <= tgScale[1]:
+        priceMatched = 1
+    elif priceToMatch <= tgScale[2]:
+        priceMatched = 2
+    elif priceToMatch <= tgScale[3]:
+        priceMatched = 3
+    else:
+        priceMatched = 4
+    db((db.auth_criteria.tgPrice>=priceMatched)|(db.auth_criteria.tgPrice==0)).update(toSend=1)
+    db.commit()
+
 def sendBean(info, piclink):
     emailList = []
     rowsToSend = db(db.auth_criteria.toSend==1).select()
@@ -114,9 +126,9 @@ def fetchBean():
             info['oriPrice'] = float(info['oriPrice'][0])
             info['salePrice'] = float(info['salePrice'][0])
 
-            piclink = html.xpath('//img[@name="ecm_main"]/@src')
+            piclink = html.xpath('//img[@name="ecm_Front"]/@src')
             if piclink == []:
-                piclink = html.xpath('//img[@name="ecm_Front"]/@src')
+                piclink = html.xpath('//img[@name="ecm_main"]/@src')
             piclink = piclink[0][:-11]
 
             info['saleID'] = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M')
@@ -170,13 +182,18 @@ def fetchTGBean():
             info['oriPrice'] = float(info['oriPrice'][0])
             info['salePrice'] = float(info['salePrice'][0])
 
-            piclink = html.xpath('//img[@name="ecm_main"]/@src')
+            piclink = html.xpath('//img[@name="ecm_Front"]/@src')
+            if piclink == []:
+                piclink = html.xpath('//img[@name="ecm_main"]/@src')
             piclink = piclink[0][:-11]
 
             info['saleID'] = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M')
 
         db.tgItems.insert(**info)
         db.commit()
+
+        matchTGPrice(info['salePrice'])
+        sendBean(info, piclink)
     except:
         notifyException()
 
