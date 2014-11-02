@@ -8,3 +8,5 @@ Max: 1h on weekday; 4h on weekendday; complete block
 [2014-09-20] Release
 
 [2014-09-29] First user sign-up
+
+[2014-10-30->11.02] Bug prevent signup for three days

@@ -115,7 +115,7 @@ salePrice = {
 }
 
 tgPrice = {
-    0: 'All Deals | 1 lovely beans per day',
+    0: 'All Deals | 1 lovely bean per day',
     1: 'below (<=) ${}'.format(tgScale[1]),
     2: 'below (<=) ${}'.format(tgScale[2]),
     3: 'below (<=) ${}'.format(tgScale[3]),
