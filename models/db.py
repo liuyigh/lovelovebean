@@ -77,6 +77,8 @@ auth.settings.reset_password_requires_verification = True
 auth.messages.verify_email = 'Click on the link http://' +     request.env.http_host +     URL(r=request,c='default',f='user',args=['verify_email']) +     '/%(key)s to verify your email'
 auth.messages.reset_password = 'Click on the link http://' +     request.env.http_host +     URL(r=request,c='default',f='user',args=['reset_password']) +     '/%(key)s to reset your password'
 auth.settings.login_next = URL('user',args='profile')
+auth.settings.register_next = URL('user',args='login')
+auth.messages.email_sent = 'Email sent. Please check your email.'
 
 ## if you need to use OpenID, Facebook, MySpace, Twitter, Linkedin, etc.
 ## register with janrain.com, write your domain:api_key in private/janrain.key
