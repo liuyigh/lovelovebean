@@ -70,6 +70,7 @@ mail.send = partial(mail.send, headers=emailheaders)
 
 ## configure auth policy
 auth.settings.mailer = mail
+auth.settings.email_case_sensitive = False
 auth.settings.registration_requires_verification = True
 auth.settings.registration_requires_approval = False
 auth.settings.reset_password_requires_verification = True

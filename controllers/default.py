@@ -40,7 +40,7 @@ def user():
     """
     if request.args(0)=='profile':
         db.auth_criteria.user_id.default = auth.user.id
-        record = db.auth_criteria(db.auth_criteria.user_id.default)
+        record = db.auth_criteria(db.auth_criteria.user_id==auth.user.id)
         formFil=SQLFORM(db.auth_criteria, 
             record=record,
             labels = {'salePrice':XML('<h3>TWO-A-DAY Clothing and Home Goods</h3> (By Sale Price)'), 'tgPrice':XML('<h3>ONE-A-DAY Travel and Gear </h3> (By Sale Price)')},
