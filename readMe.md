@@ -5,18 +5,18 @@
 * Title Keywords (id="ppHeader")
     - unicode (currently ignored)
 * Details Keywords (id="ppDetails")
-* Review numbers (class="reviewsNumber")
+* Review numbers (class="reviewsNumber") #next
     - No Review (as 0)
-* Average reviews (id="ATBProdStarReviews" | title="")
+* Average reviews (id="ATBProdStarReviews" | title="") #next
     - No Review (as None)
 * Original Price (class="toOrderItemStrikeOutPrice")
 * abso. save (class="toOrderItemSaleText")
-* percent save (class="toOrderItemSaleText" itemprop="description"")
+* percent save (class="toOrderItemSaleText" itemprop="description"") #next
 * saleID (timestamp)
 * prodID
-* pictures (link only?) '//img[@name="ecm_main"]/@src'
+* pictures (link only?) '//img[@name="ecm_main"]/@src' #done
 * Regular Tall Petite
-* Daily Travel Gear 510312
+* Daily Travel Gear 510312 #done
     
 	
 # First Priorities:
@@ -37,7 +37,7 @@
 
 
 # Second Priorities:
-* 510312
+* _510312_ done 11.02.2014
 * Scrape
 
 ```
@@ -51,10 +51,12 @@
 * advanced user filter DB
     - Keywords: individual word matching
     - numbers: Predefined specific range (and use numbers to represent instead of user customizing)
+    - Wishlist
 * _Fail proof for all steps: notify me when error._ 10/20/2014
 * _Cron watchdog_ watchdog with tmux 10.28.2014
 * _Automatic database backup_ 10.15.2014
 * Big Data: present deal distributions
+    - most popular items: averev*revnum
 * API deal mail
     - username merge
     - *|itemDetails|*
@@ -64,10 +66,10 @@
     - blog: introducing LLB
     - Web Design CSS: mobile. Done 10/18/2014
     - homepage show current item
-    - SMTP mailer issue email template:   
+    - SMTP mailer issue email template: use Jinja2
         - register email
         - reset pwd email
-        - use auth() verification codes
+        - use auth() verification codes?
 * Marketing:
     - Twitter
     - Blog
@@ -92,6 +94,7 @@
 * radio widget
 * dynamic mailer
 * split every: http://bit.ly/X2vFmx
+* reference in record; and record default 11.04.2014
 
 # Notes:
 * m.llbean.com scrape:
