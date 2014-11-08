@@ -52,6 +52,7 @@
     - Keywords: individual word matching
     - numbers: Predefined specific range (and use numbers to represent instead of user customizing)
     - Wishlist
+    - Blacklist and Whitelist (higher priority)
 * _Fail proof for all steps: notify me when error._ 10/20/2014
 * _Cron watchdog_ watchdog with tmux 10.28.2014
 * _Automatic database backup_ 10.15.2014
@@ -65,6 +66,7 @@
     - logo; LoveLoveBean
     - blog: introducing LLB
     - Web Design CSS: mobile. Done 10/18/2014
+    - User count
     - homepage show current item
     - SMTP mailer issue email template: use Jinja2
         - register email
