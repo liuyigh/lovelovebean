@@ -53,3 +53,9 @@ div.flash {
     font-size:30px;
     font-weight:bold;
 }
+
+#usercount {
+    line-height:1em;
+    font-size:90px;
+    color:#859900;
+}

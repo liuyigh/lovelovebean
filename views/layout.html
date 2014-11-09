@@ -100,7 +100,10 @@
                 <div class='pull-left' id='logo'>
                     <img src="{{=URL('static', 'images/love-love-bean-logo.png')}}" alt="Love Love Bean" width=120 />
                 </div>
-                <small id='tagline'>{{=response.subtitle or ''}}</small>
+                <small class='pull-left' id='tagline'>{{=response.subtitle or ''}}</small>
+                <div class='pull-right' id='usercounter' style='margin-right:60px'>
+                    <div id='usercount'>{{=db(db.auth_user).count()}}</div> <div style='padding-left:10px;'>Bean Lovers <br>Since 10/2014</div>
+                </div>
             </div>
         </div>
 	{{pass}}
