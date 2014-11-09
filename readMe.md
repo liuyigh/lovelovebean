@@ -7,11 +7,11 @@
 * Details Keywords (id="ppDetails")
 * Review numbers (class="reviewsNumber") #next
     - No Review (as 0)
-* Average reviews (id="ATBProdStarReviews" | title="") #next
+* Average reviews (id="ATBProdStarReviews" | title="") #done 11.08.14
     - No Review (as None)
 * Original Price (class="toOrderItemStrikeOutPrice")
 * abso. save (class="toOrderItemSaleText")
-* percent save (class="toOrderItemSaleText" itemprop="description"") #next
+* percent save (class="toOrderItemSaleText" itemprop="description"") #done 11.08.14
 * saleID (timestamp)
 * prodID
 * pictures (link only?) '//img[@name="ecm_main"]/@src' #done

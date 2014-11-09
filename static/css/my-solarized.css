@@ -22,7 +22,7 @@ pre,code{font-family:'Source Code Pro',sans-serif;} /*font-size: 100%*/
 
 [type="text"] {width:16em;}
 input[type="checkbox"] {margin: 0 5px 2px;line-height: 30px;height: 30px;}
-select {width:12em;}
+select {width:20em;}
 select, textarea, input {font-size: 100%}
 #wrapper {background-color: #fdf6e3}
 

@@ -80,7 +80,7 @@ def match(field, scale, valueToMatch):
         valueMatched = 1
     else:
         valueMatched = 0
-    db(field<=valueMatched).update(toSend=1)
+    db((field<=valueMatched)&(field!=None)).update(toSend=1)
     db.commit()
 
 def sendBean(info, piclink):

@@ -116,7 +116,7 @@ salePrice = {
     1: 'below (<=) ${}'.format(priceScale[1]),
     2: 'below (<=) ${}'.format(priceScale[2]),
     3: 'below (<=) ${}'.format(priceScale[3]),
-    -1: 'Nope. More filters please! :)'
+    -1: 'Nope. Disable this filter.'
 }
 
 tgPrice = {
@@ -124,21 +124,23 @@ tgPrice = {
     1: 'below (<=) ${}'.format(tgScale[1]),
     2: 'below (<=) ${}'.format(tgScale[2]),
     3: 'below (<=) ${}'.format(tgScale[3]),
-    -1: 'Nope. More filters please! :)'
+    -1: 'Nope. Disable this filter.'
 }
 
 aveRev = {
-    0: 'Not specified.',
-    1: 'above (>=) {} stars. Exclude the bottom 10%'.format(aveRevScale[1]),
-    2: 'above (>=) {} stars. Above average.'.format(aveRevScale[2]),
-    3: 'above (>=) {} stars. Top 10% Deals'.format(aveRevScale[3])
+    0: 'Not specified. Get all Deals.',
+    1: 'above {} stars. Exclude bottom 10%'.format(aveRevScale[1]),
+    2: 'above {} stars. Above average.'.format(aveRevScale[2]),
+    3: 'above {} stars. Top 10% Deals'.format(aveRevScale[3]),
+    10: 'Disable this filter.'
 }
 
 percSave = {
-    0: 'Not specified.',
-    1: 'above (>=) {} %. Exclude the bottom 10%'.format(percSaveScale[1]),
-    2: 'above (>=) {} %. Above average.'.format(percSaveScale[2]),
-    3: 'above (>=) {} %. Top 10% Deals'.format(percSaveScale[3])
+    0: 'Not specified. Get all Deals.',
+    1: '>= {}% Off. Exclude bottom 10%'.format(percSaveScale[1]),
+    2: '>= {}% Off. Above average.'.format(percSaveScale[2]),
+    3: '>= {}% Off. Top 10% Deals'.format(percSaveScale[3]),
+    10: 'Disable this filter.'
 }
 
 db.define_table('auth_criteria',
