@@ -71,6 +71,18 @@ def matchTGPrice(priceToMatch):
     db((db.auth_criteria.tgPrice>=priceMatched)|(db.auth_criteria.tgPrice==0)).update(toSend=1)
     db.commit()
 
+def match(field, scale, valueToMatch):
+    if valueToMatch >= scale[3]:
+        valueMatched = 3
+    elif valueToMatch >= scale[2]:
+        valueMatched = 2
+    elif valueToMatch >= scale[1]:
+        valueMatched = 1
+    else:
+        valueMatched = 0
+    db(field<=valueMatched).update(toSend=1)
+    db.commit()
+
 def sendBean(info, piclink):
     emailList = []
     rowsToSend = db(db.auth_criteria.toSend==1).select()
@@ -137,6 +149,8 @@ def fetchBean():
         db.commit()
 
         matchPrice(info['salePrice'])
+        match(db.auth_criteria.aveRev, aveRevScale, info['aveRev'])
+        match(db.auth_criteria.percSave, percSaveScale, info['percSave'])
         sendBean(info, piclink)
     except:
         notifyException()
@@ -193,6 +207,8 @@ def fetchTGBean():
         db.commit()
 
         matchTGPrice(info['salePrice'])
+        match(db.auth_criteria.aveRev, aveRevScale, info['aveRev'])
+        match(db.auth_criteria.percSave, percSaveScale, info['percSave'])
         sendBean(info, piclink)
     except:
         notifyException()

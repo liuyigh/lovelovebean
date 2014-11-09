@@ -108,6 +108,8 @@ db.auth_user.email.comment = 'This is your ID. Required.'
 
 priceScale = {1:14.99,2:19.99,3:34.99}
 tgScale = {1:24.99,2:49.99,3:74.99}
+aveRevScale = {1:3.3,2:4.0,3:4.7}
+percSaveScale = {1:42,2:56,3:67}
 
 salePrice = {
     0: 'All Deals | 2 lovely beans per day',
@@ -125,10 +127,26 @@ tgPrice = {
     -1: 'Nope. More filters please! :)'
 }
 
+aveRev = {
+    0: 'Not specified.',
+    1: 'above (>=) {} stars. Exclude the bottom 10%'.format(aveRevScale[1]),
+    2: 'above (>=) {} stars. Above average.'.format(aveRevScale[2]),
+    3: 'above (>=) {} stars. Top 10% Deals'.format(aveRevScale[3])
+}
+
+percSave = {
+    0: 'Not specified.',
+    1: 'above (>=) {} %. Exclude the bottom 10%'.format(percSaveScale[1]),
+    2: 'above (>=) {} %. Above average.'.format(percSaveScale[2]),
+    3: 'above (>=) {} %. Top 10% Deals'.format(percSaveScale[3])
+}
+
 db.define_table('auth_criteria',
    Field('user_id', 'reference auth_user', readable=False, writable=False),
    Field('salePrice', 'integer', widget=SQLFORM.widgets.radio.widget, requires = IS_IN_SET(salePrice)),
    Field('tgPrice', 'integer', widget=SQLFORM.widgets.radio.widget, requires = IS_IN_SET(tgPrice)),
+   Field('aveRev', 'integer', requires = IS_IN_SET(aveRev)),
+   Field('percSave', 'integer', requires = IS_IN_SET(percSave)),
    Field('toSend','integer', readable=False, writable=False))
 db.auth_criteria.user_id.requires = IS_IN_DB(db, db.auth_user.id)
 db.auth_criteria.id.readable=False 

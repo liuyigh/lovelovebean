@@ -20,7 +20,7 @@ def index():
     """
     response.flash = T("Welcome to LoveLoveBean!")
     response.title = 'LoveLoveBean'
-    return dict(message=T('LoveLoveBean App now includes Travel and Gear Markdown!'))
+    return dict(message=XML('LoveLoveBean App adds new filters: <br> Ratings-based and Percentage Saving-based Filters!'))
 
 
 def user():
@@ -43,7 +43,11 @@ def user():
         record = db.auth_criteria(db.auth_criteria.user_id==auth.user.id)
         formFil=SQLFORM(db.auth_criteria, 
             record=record,
-            labels = {'salePrice':XML('<h3>TWO-A-DAY Clothing and Home Goods</h3> (By Sale Price)'), 'tgPrice':XML('<h3>ONE-A-DAY Travel and Gear </h3> (By Sale Price)')},
+            labels = {'salePrice':XML('<h3>TWO-A-DAY Clothing & Home Goods</h3> (By Sale Price)'), 
+                      'tgPrice':XML('<h3>ONE-A-DAY Travel and Gear </h3> (By Sale Price)'),
+                      'aveRev':XML('<b>By Avereage Ratings</b>'),
+                      'percSave':XML('<b>By Percentage Saved</b>')
+                      },
             buttons = [TAG.button('Set Mine', _class='btn-primary')])
         if formFil.process().accepted:
             response.flash = XML('Your preference is recorded. <br>Get ready for lovely beans.')
