@@ -66,7 +66,7 @@
     - logo; LoveLoveBean
     - blog: introducing LLB
     - Web Design CSS: mobile. Done 10/18/2014
-    - User count
+    - User count. Done 11/9/2014
     - homepage show current item
     - SMTP mailer issue email template: use Jinja2
         - register email
