@@ -13,6 +13,7 @@ response.subtitle = XML('L.L.Bean Daily Sales <br/> We Tailor to Fit You <br/> D
 ## read more at http://dev.w3.org/html5/markup/meta.name.html
 response.meta.author = 'LoveLoveBean App<we@lovelovebean.com>'
 response.meta.keywords = 'L.L.Bean, Daily Markdown, Sales, Alert'
+response.meta.description = 'Save money on quality L.L.Bean products. LoveLoveBean App watches L.L.Bean Daily Markdown Sales, screen for the best deals YOU desire, notify you by EMail'
 response.meta.generator = 'Web2py Web Framework'
 
 ## your http://google.com/analytics id
