@@ -7,12 +7,12 @@
 
 response.logo = A(B('L',SPAN('ove'),'L', SPAN('ove'),'Bean', XML('<sup> beta</sup>')),
                   _class="brand",_href="http://lovelovebean.com/")
-response.title = request.application.replace('_',' ').title()
+response.title = 'LoveLoveBean - The Missing App for L.L.Bean'
 response.subtitle = XML('L.L.Bean Daily Sales <br/> We Tailor to Fit You <br/> Deliver to You with Love')
 
 ## read more at http://dev.w3.org/html5/markup/meta.name.html
-response.meta.author = 'LoveLoveBean <vievie@gamil.com>'
-response.meta.keywords = 'L.L.Bean, Daily Markdown, Alert'
+response.meta.author = 'LoveLoveBean App<we@lovelovebean.com>'
+response.meta.keywords = 'L.L.Bean, Daily Markdown, Sales, Alert'
 response.meta.generator = 'Web2py Web Framework'
 
 ## your http://google.com/analytics id
