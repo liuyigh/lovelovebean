@@ -83,12 +83,12 @@ def match(field, scale, valueToMatch):
     db((field<=valueMatched)&(field!=None)).update(toSend=1)
     db.commit()
 
-def sendBean(info, piclink):
+def sendBean(info, piclink, pageID):
     emailList = []
     rowsToSend = db(db.auth_criteria.toSend==1).select()
     for row in rowsToSend:
         emailList.append(row.user_id.email)
-    message = {'global_merge_vars':[{'name':k,'content':v} for (k,v) in info.iteritems()]+[{'name':'piclink','content':piclink}], 
+    message = {'global_merge_vars':[{'name':k,'content':v} for (k,v) in info.iteritems()]+[{'name':'piclink','content':piclink}]+[{'name':'pageID','content':pageID}], 
                'to':[{'email':email} for email in emailList]
               }
     #template_content = []
@@ -142,6 +142,7 @@ def fetchBean():
             if piclink == []:
                 piclink = html.xpath('//img[@name="ecm_main"]/@src')
             piclink = piclink[0][:-11]
+            pageID='504987'
 
             info['saleID'] = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M')
 
@@ -151,7 +152,7 @@ def fetchBean():
         matchPrice(info['salePrice'])
         match(db.auth_criteria.aveRev, aveRevScale, info['aveRev'])
         match(db.auth_criteria.percSave, percSaveScale, info['percSave'])
-        sendBean(info, piclink)
+        sendBean(info, piclink, pageID)
     except:
         notifyException()
 
@@ -200,6 +201,7 @@ def fetchTGBean():
             if piclink == []:
                 piclink = html.xpath('//img[@name="ecm_main"]/@src')
             piclink = piclink[0][:-11]
+            pageID='510312'
 
             info['saleID'] = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M')
 
@@ -209,7 +211,7 @@ def fetchTGBean():
         matchTGPrice(info['salePrice'])
         match(db.auth_criteria.aveRev, aveRevScale, info['aveRev'])
         match(db.auth_criteria.percSave, percSaveScale, info['percSave'])
-        sendBean(info, piclink)
+        sendBean(info, piclink, pageID)
     except:
         notifyException()
 
