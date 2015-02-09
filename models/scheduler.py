@@ -120,7 +120,7 @@ def fetchBean():
             info['oriPrice'] = html.xpath('//h2[@class="toOrderItemPrice toOrderItemStrikeOutPrice"]/text()')
             info['salePrice'] = html.xpath('//h2[@class="toOrderItemSalePrice"]/text()')
             info['absSave'] = html.xpath('//p[@class="toOrderItemSaleText"][1]/text()')
-            info['percSave'] = html.xpath('//p[@class="toOrderItemSaleText" and @itemprop="description"]/text()')
+            info['percSave'] = html.xpath('//p[@class="toOrderItemSaleText"][2]/text()')
             
             info = {k: [x.strip('$()\n\t\r ') for x in v] for (k, v) in info.iteritems()}
             info = {k: filter(None, v) for (k, v) in info.iteritems()}
@@ -179,7 +179,7 @@ def fetchTGBean():
             info['oriPrice'] = html.xpath('//h2[@class="toOrderItemPrice toOrderItemStrikeOutPrice"]/text()')
             info['salePrice'] = html.xpath('//h2[@class="toOrderItemSalePrice"]/text()')
             info['absSave'] = html.xpath('//p[@class="toOrderItemSaleText"][1]/text()')
-            info['percSave'] = html.xpath('//p[@class="toOrderItemSaleText" and @itemprop="description"]/text()')
+            info['percSave'] = html.xpath('//p[@class="toOrderItemSaleText"][2]/text()')
             
             info = {k: [x.strip('$()\n\t\r ') for x in v] for (k, v) in info.iteritems()}
             info = {k: filter(None, v) for (k, v) in info.iteritems()}
