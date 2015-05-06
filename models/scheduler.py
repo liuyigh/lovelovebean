@@ -117,8 +117,8 @@ def fetchBean():
             info['prodID'] = html.xpath('//span[@itemprop="productID"]/text()')
             info['revNum'] = html.xpath('//span[@class="reviewsNumber"]/text()')
             info['aveRev'] = html.xpath('//span[@id="ATBProdStarReviews"]/img/@alt')
-            info['oriPrice'] = html.xpath('//h2[@class="toOrderItemPrice toOrderItemStrikeOutPrice"]/text()')
-            info['salePrice'] = html.xpath('//h2[@class="toOrderItemSalePrice"]/text()')
+            info['oriPrice'] = html.xpath('//div[@class="toOrderItemPrice toOrderItemStrikeOutPrice"]/text()')
+            info['salePrice'] = html.xpath('//div[@class="toOrderItemSalePrice"]/text()')
             info['absSave'] = html.xpath('//p[@class="toOrderItemSaleText"][1]/text()')
             info['percSave'] = html.xpath('//p[@class="toOrderItemSaleText"][2]/text()')
             
@@ -142,7 +142,7 @@ def fetchBean():
             if piclink == []:
                 piclink = html.xpath('//img[@name="ecm_main"]/@src')
             piclink = piclink[0][:-11]
-            pageID='504987'
+            pageID='1ADemq3'
 
             info['saleID'] = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M')
 
@@ -176,8 +176,8 @@ def fetchTGBean():
             info['prodID'] = html.xpath('//span[@itemprop="productID"]/text()')
             info['revNum'] = html.xpath('//span[@class="reviewsNumber"]/text()')
             info['aveRev'] = html.xpath('//span[@id="ATBProdStarReviews"]/img/@alt')
-            info['oriPrice'] = html.xpath('//h2[@class="toOrderItemPrice toOrderItemStrikeOutPrice"]/text()')
-            info['salePrice'] = html.xpath('//h2[@class="toOrderItemSalePrice"]/text()')
+            info['oriPrice'] = html.xpath('//div[@class="toOrderItemPrice toOrderItemStrikeOutPrice"]/text()')
+            info['salePrice'] = html.xpath('//div[@class="toOrderItemSalePrice"]/text()')
             info['absSave'] = html.xpath('//p[@class="toOrderItemSaleText"][1]/text()')
             info['percSave'] = html.xpath('//p[@class="toOrderItemSaleText"][2]/text()')
             
@@ -201,7 +201,7 @@ def fetchTGBean():
             if piclink == []:
                 piclink = html.xpath('//img[@name="ecm_main"]/@src')
             piclink = piclink[0][:-11]
-            pageID='510312'
+            pageID='1zyZEVW'
 
             info['saleID'] = datetime.datetime.strftime(datetime.datetime.now(), '%Y-%m-%d %H:%M')
 

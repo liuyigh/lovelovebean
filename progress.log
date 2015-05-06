@@ -13,3 +13,5 @@ Max: 1h on weekday; 4h on weekendday; complete block
 [2014-11-04] 10 users
 
 [2014-11-28] Time Out error once. Add retry and extended timeout.
+
+[2015-04-01] 50 users
