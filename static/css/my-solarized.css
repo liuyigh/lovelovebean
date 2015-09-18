@@ -24,7 +24,8 @@ pre,code{font-family:'Source Code Pro',sans-serif;} /*font-size: 100%*/
 input[type="checkbox"] {margin: 0 5px 2px;line-height: 30px;height: 30px;}
 select {width:20em;}
 select, textarea, input {font-size: 100%}
-#wrapper {background-color: #fdf6e3}
+#wrapper {background-color: #fdf6e3;
+    box-shadow: 0 9px 0px 0px white, 0 -9px 0px 0px white, 12px 0 15px -4px rgba(31, 73, 125, 0.8), -12px 0 15px -4px rgba(31, 73, 125, 0.8);}
 
 div.flash {
     color:#d33682;
