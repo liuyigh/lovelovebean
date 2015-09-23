@@ -1,3 +1,7 @@
+# Current to do:
+* add share buttons to template
+* analyse one year of database
+
 # Filters:
 * All Deals (under price filter)
 * sale Price (class="toOrderItemSalePrice")
