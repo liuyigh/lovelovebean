@@ -43,7 +43,7 @@ def notifyException():
     message = {'subject':'LLB Scheduler Error',
                 'from_email':'we@lovelovebean.com',
                 'html':html,
-                'to':[{'email':'vievie@gmail.com'}]
+                'to':[{'email':'yi@liuyi.co'}]
                 }
     result = mandrill_client.messages.send(message=message)
 
