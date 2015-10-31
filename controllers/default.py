@@ -20,7 +20,7 @@ def index():
     """
     response.flash = T("Welcome to LoveLoveBean!")
     response.title = 'LoveLoveBean'
-    return dict(message=XML('LoveLoveBean App adds new filters: <br> Ratings-based and Percentage Saving-based Filters!'))
+    return dict(message=XML("L.L.Bean Deals for &#9792 / &#9794 : <br> Get or exclude Women's or Men's products using new gender-based filter!"))
 
 
 def user():
