@@ -83,6 +83,17 @@ def match(field, scale, valueToMatch):
     db((field<=valueMatched)&(field!=None)).update(toSend=1)
     db.commit()
 
+def matchGender(titleToMatch):
+    titleWords = titleToMatch.lower().split()
+    if "men's" in titleWords:
+        db((db.auth_criteria.genderPref==1)&(db.auth_criteria.toSend==1)).update(toSend=0)
+    if "men's" not in titleWords:
+        db((db.auth_criteria.genderPref==3)&(db.auth_criteria.toSend==1)).update(toSend=0)
+    if "women's" in titleWords:
+        db((db.auth_criteria.genderPref==2)&(db.auth_criteria.toSend==1)).update(toSend=0)
+    if "women's" not in titleWords:
+        db((db.auth_criteria.genderPref==4)&(db.auth_criteria.toSend==1)).update(toSend=0)
+
 def sendBean(info, piclink, pageID):
     emailList = []
     rowsToSend = db(db.auth_criteria.toSend==1).select()
@@ -152,6 +163,7 @@ def fetchBean():
         matchPrice(info['salePrice'])
         match(db.auth_criteria.aveRev, aveRevScale, info['aveRev'])
         match(db.auth_criteria.percSave, percSaveScale, info['percSave'])
+        matchGender(info['itemTitle'])
         sendBean(info, piclink, pageID)
     except:
         notifyException()
@@ -211,6 +223,7 @@ def fetchTGBean():
         matchTGPrice(info['salePrice'])
         match(db.auth_criteria.aveRev, aveRevScale, info['aveRev'])
         match(db.auth_criteria.percSave, percSaveScale, info['percSave'])
+        matchGender(info['itemTitle'])
         sendBean(info, piclink, pageID)
     except:
         notifyException()

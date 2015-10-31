@@ -129,7 +129,7 @@ tgPrice = {
 }
 
 aveRev = {
-    0: 'Not specified. Get all Deals.',
+    0: 'Not specified. Get all deals.',
     1: 'above {} stars. Exclude bottom 10%'.format(aveRevScale[1]),
     2: 'above {} stars. Above average.'.format(aveRevScale[2]),
     3: 'above {} stars. Top 10% Deals'.format(aveRevScale[3]),
@@ -137,11 +137,19 @@ aveRev = {
 }
 
 percSave = {
-    0: 'Not specified. Get all Deals.',
+    0: 'Not specified. Get all deals.',
     1: '>= {}% Off. Exclude bottom 10%'.format(percSaveScale[1]),
     2: '>= {}% Off. Above average.'.format(percSaveScale[2]),
     3: '>= {}% Off. Top 10% Deals'.format(percSaveScale[3]),
     10: 'Disable this filter.'
+}
+
+genderPref = {
+    0: 'Not specified. Other filters still apply.',
+    1: "Exclude Men's, 25% of deals.",
+    2: "Exclude Women's, half of deals.",
+    3: "Only Men's, 25% of deals.",
+    4: "Only Women's, half of deals."
 }
 
 db.define_table('auth_criteria',
@@ -150,6 +158,7 @@ db.define_table('auth_criteria',
    Field('tgPrice', 'integer', widget=SQLFORM.widgets.radio.widget, requires = IS_IN_SET(tgPrice)),
    Field('aveRev', 'integer', requires = IS_IN_SET(aveRev)),
    Field('percSave', 'integer', requires = IS_IN_SET(percSave)),
+   Field('genderPref','integer', widget=SQLFORM.widgets.radio.widget, requires = IS_IN_SET(genderPref)),
    Field('toSend','integer', readable=False, writable=False))
 db.auth_criteria.user_id.requires = IS_IN_DB(db, db.auth_user.id)
 db.auth_criteria.id.readable=False 

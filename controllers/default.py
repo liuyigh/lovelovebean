@@ -46,7 +46,8 @@ def user():
             labels = {'salePrice':XML('<h3>TWO-A-DAY Clothing & Home Goods</h3> (By Sale Price)'), 
                       'tgPrice':XML('<h3>ONE-A-DAY Travel and Gear </h3> (By Sale Price)'),
                       'aveRev':XML('<b>By Avereage Ratings</b>'),
-                      'percSave':XML('<b>By Percentage Saved</b>')
+                      'percSave':XML('<b>By Percentage Saved</b>'),
+                      'genderPref':XML('<h3>By Gender of Products</h3> AND-gate. Other filters apply')
                       },
             buttons = [TAG.button('Set Mine', _class='btn-primary')])
         if formFil.process().accepted:

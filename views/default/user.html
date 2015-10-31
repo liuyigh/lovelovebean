@@ -20,7 +20,7 @@ pass}}</div>
 <div id="user_filter">
 {{if request.args(0)=='profile':
 =H2('Your Filters:')
-=XML('<p>Note: Filters are logically OR-gates. You will get an email when ANY of the "price", "ratings", or "percentage savings" criteria is matched. If you only want to use ratings filter, you can set sale price to "Nope."</p>')
+=XML('<p>Note: Filters are logically OR-gates (except for gender AND-gate). You will get an email when ANY of the "price", "ratings", or "percentage savings" criteria is matched. If you only want to use ratings filter, you can set sale price to "Nope."</p>')
 =formFil
 pass}}
 </div>
