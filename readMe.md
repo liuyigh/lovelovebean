@@ -102,6 +102,7 @@
 * dynamic mailer
 * split every: http://bit.ly/X2vFmx
 * reference in record; and record default 11.04.2014
+* info local reference problem. re-run
 
 # Notes:
 * m.llbean.com scrape:
