@@ -1,6 +1,12 @@
 # Current to do:
 * add share buttons to template
 * analyse one year of database
+	* [ ]review database 1-year: add star >4.9
+	* [ ]Clothes set/combinations?
+	* [ ]add 1000+ products, stared products
+	* [ ]Improve post: add infographic, share start and end, add images, short url
+
+
 
 # Filters:
 * All Deals (under price filter)
