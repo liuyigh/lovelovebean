@@ -1,5 +1,5 @@
 # Current to do:
-* add share buttons to template
+* add share buttons to template. Done.
 * analyse one year of database
 	* [ ]review database 1-year: add star >4.9
 	* [ ]Clothes set/combinations?
