@@ -20,4 +20,8 @@ Max: 1h on weekday; 4h on weekendday; complete block
 
 [2015-09-29] 100 users
 
+<<<<<<< Updated upstream
 [2016-01-19] Allow user to delete account
+=======
+[2015-11-21] Donation Button
+>>>>>>> Stashed changes
