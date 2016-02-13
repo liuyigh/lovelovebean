@@ -25,3 +25,7 @@ Max: 1h on weekday; 4h on weekendday; complete block
 =======
 [2015-11-21] Donation Button
 >>>>>>> Stashed changes
+
+[2016-2-12] reCAPTCHA
+Clean up database with no criteria by 
+~db.table.id.belongs(['''list of ids in criteria'''])
