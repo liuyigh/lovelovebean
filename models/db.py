@@ -42,6 +42,9 @@ response.generic_patterns = ['*'] if request.is_local else []
 
 from gluon.tools import Auth, Crud, Service, PluginManager, prettydate
 auth = Auth(db)
+from gluon.tools import Recaptcha
+auth.settings.captcha = Recaptcha(request,
+    '6LeGwhcTAAAAAJLu7Z3-ZDtYHLXGXFCnmLF72DdS', '6LeGwhcTAAAAABEGVN7YJpI43wLGx2oJVPqjIMj_')
 crud, service, plugins = Crud(db), Service(), PluginManager()
 
 auth.messages.label_first_name = 'Nickname' ### My settings
@@ -80,7 +83,7 @@ auth.settings.login_next = URL('user',args='profile')
 auth.settings.register_next = URL('user',args='login')
 auth.messages.email_sent = 'Email sent. Please check your email.'
 auth.messages.email_verified = 'Email verified. Please login to set your criteria.'
-auth.settings.allow_delete_accounts= True
+# auth.settings.allow_delete_accounts= True
 
 ## if you need to use OpenID, Facebook, MySpace, Twitter, Linkedin, etc.
 ## register with janrain.com, write your domain:api_key in private/janrain.key
