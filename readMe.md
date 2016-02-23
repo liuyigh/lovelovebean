@@ -1,5 +1,7 @@
 # Current to do:
-* add share buttons to template. Done.
+* Suspended new registration on 2.22.2016. message change.
+* Add mechanism to clean up user with no criteria
+* Add trial->paid->non-paid, expiration date to auth_criteria
 * analyse one year of database
 	* [ ]review database 1-year: add star >4.9
 	* [ ]Clothes set/combinations?
@@ -99,6 +101,7 @@
 * advanced deal combinations if user desire
 * Google analystics
 * monetize from the company
+* add share buttons to template. Done.
 
 
 # Solved problems:
