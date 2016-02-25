@@ -2,6 +2,7 @@
 * Suspended new registration on 2.22.2016. message change.
 * Add mechanism to clean up user with no criteria
 * Add trial->paid->non-paid, expiration date to auth_criteria
+* Switch to mailgun
 * analyse one year of database
 	* [ ]review database 1-year: add star >4.9
 	* [ ]Clothes set/combinations?
