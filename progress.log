@@ -26,6 +26,12 @@ Max: 1h on weekday; 4h on weekendday; complete block
 [2015-11-21] Donation Button
 >>>>>>> Stashed changes
 
-[2016-2-12] reCAPTCHA
+[2016-02-12] reCAPTCHA
 Clean up database with no criteria by 
 ~db.table.id.belongs(['''list of ids in criteria'''])
+
+[2016-02-29]
+delete non-paid users
+clean up `auth_group` and `auth_event`
+`~db.auth_group.id.belongs([1,124,178])`
+`~(db.auth_event.description.contains(124) | db.auth_event.description.contains(178) | db.auth_event.description.contains(' 1 '))`
