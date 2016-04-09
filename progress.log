@@ -35,3 +35,6 @@ delete non-paid users
 clean up `auth_group` and `auth_event`
 `~db.auth_group.id.belongs([1,124,178])`
 `~(db.auth_event.description.contains(124) | db.auth_event.description.contains(178) | db.auth_event.description.contains(' 1 '))`
+
+[2016-04-09]
+mailgun

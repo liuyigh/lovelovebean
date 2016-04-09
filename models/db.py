@@ -57,9 +57,9 @@ from gluon.tools import Mail
 from functools import partial
 import json
 mail = Mail()
-mail.settings.server = 'smtp.mandrillapp.com:587'
+mail.settings.server = 'smtp.mailgun.org:587'
 mail.settings.sender = 'we@lovelovebean.com'
-mail.settings.login = 'vievie@gmail.com:0HLwKIwvpC_In6QveAuviw'
+mail.settings.login = 'postmaster@mg.lovelovebean.com:d2333251830b0afc74f1c2aacb5c26a0'
 '''
 emailheaders = {}
 if request.args(0)=='register':

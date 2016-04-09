@@ -3,9 +3,9 @@ from gluon.scheduler import Scheduler
 from datetime import timedelta as timed
 import lxml.html as lh
 import lxml, requests, mandrill, logging, sys, traceback
+from jinja2 import Environment, FileSystemLoader
 
 sche_db = DAL('sqlite://sched.sqlite')
-mandrill_client = mandrill.Mandrill('0HLwKIwvpC_In6QveAuviw')
 
 db.define_table('saleItems', 
         Field('saleID', 'string',unique=True),
@@ -99,11 +99,20 @@ def sendBean(info, piclink, pageID):
     rowsToSend = db(db.auth_criteria.toSend==1).select()
     for row in rowsToSend:
         emailList.append(row.user_id.email)
-    message = {'global_merge_vars':[{'name':k,'content':v} for (k,v) in info.iteritems()]+[{'name':'piclink','content':piclink}]+[{'name':'pageID','content':pageID}], 
-               'to':[{'email':email} for email in emailList]
-              }
-    #template_content = []
-    result = mandrill_client.messages.send_template(template_name='llb-bean',template_content=[], message=message)
+    
+    env = Environment(loader=FileSystemLoader('/'))
+    t = env.get_template('/home/liuyidh/lovelovebean.com/applications/LLBean/views/email/llb_bean.html')
+    r = t.render(info=info, piclink=piclink, pageID=pageID)
+    
+    requests.post(
+        "https://api.mailgun.net/v3/mg.lovelovebean.com/messages",
+        auth=("api", "key-e687b2003bf6597a79d657564ce3fd87"),
+        data={"from": "The Bean Lover <we@lovelovebean.com>",
+              "to": emailList,
+              "subject": "A Lovely Bean is Here for You",
+              "html": r,
+              "recipient-variables": ()})
+
     db(db.auth_criteria.toSend==1).update(toSend=0)
     db.commit()
     return None
