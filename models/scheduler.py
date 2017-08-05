@@ -106,7 +106,7 @@ def sendBean(info, piclink, pageID):
     
     requests.post(
         "https://api.mailgun.net/v3/mg.lovelovebean.com/messages",
-        auth=("api", "key-e687b2003bf6597a79d657564ce3fd87"),
+        auth=("api", "api_key"),
         data={"from": "The Bean Lover <we@lovelovebean.com>",
               "to": emailList,
               "subject": "A Lovely Bean is Here for You",
