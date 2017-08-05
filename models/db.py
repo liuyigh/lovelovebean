@@ -59,7 +59,7 @@ import json
 mail = Mail()
 mail.settings.server = 'smtp.mailgun.org:587'
 mail.settings.sender = 'we@lovelovebean.com'
-mail.settings.login = 'postmaster@mg.lovelovebean.com:d2333251830b0afc74f1c2aacb5c26a0'
+mail.settings.login = 'postmaster@mg.lovelovebean.com:<smtp_key>'
 '''
 emailheaders = {}
 if request.args(0)=='register':
